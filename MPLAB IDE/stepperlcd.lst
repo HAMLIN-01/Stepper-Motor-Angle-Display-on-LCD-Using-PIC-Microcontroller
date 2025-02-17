@@ -1,0 +1,852 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Tue Oct 08 09:58:54 2024
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_angle
+    43                           	FNCALL	_angle,_display
+    44                           	FNCALL	_angle,_delay
+    45                           	FNROOT	_main
+    46                           	global	_PORTB
+    47                           psect	text72,local,class=CODE,delta=2
+    48                           global __ptext72
+    49  0000                     __ptext72:
+    50  0006                     _PORTB	set	6
+    51                           	global	_PORTC
+    52  0007                     _PORTC	set	7
+    53                           	global	_TRISB
+    54  0086                     _TRISB	set	134
+    55                           	global	_TRISC
+    56  0087                     _TRISC	set	135
+    57                           	file	"stepperlcd.as"
+    58                           	line	#
+    59                           psect cinit,class=CODE,delta=2
+    60                           global start_initialization
+    61  072F                     start_initialization:
+    62                           
+    63                           psect cinit,class=CODE,delta=2
+    64                           global end_of_initialization
+    65                           
+    66                           ;End of C runtime variable initialization code
+    67                           
+    68  072F                     end_of_initialization:
+    69  072F  0183               clrf status
+    70  0730  120A  118A  2FAE   ljmp _main	;jump to C main() function
+    71                           psect	cstackCOMMON,class=COMMON,space=1
+    72                           global __pcstackCOMMON
+    73  0070                     __pcstackCOMMON:
+    74                           	global	?_angle
+    75  0070                     ?_angle:	; 0 bytes @ 0x0
+    76                           	global	?_display
+    77  0070                     ?_display:	; 0 bytes @ 0x0
+    78                           	global	??_display
+    79  0070                     ??_display:	; 0 bytes @ 0x0
+    80                           	global	?_delay
+    81  0070                     ?_delay:	; 0 bytes @ 0x0
+    82                           	global	?_main
+    83  0070                     ?_main:	; 0 bytes @ 0x0
+    84                           	global	display@num
+    85  0070                     display@num:	; 1 bytes @ 0x0
+    86                           	global	delay@a
+    87  0070                     delay@a:	; 2 bytes @ 0x0
+    88  0070                     	ds	2
+    89                           	global	??_delay
+    90  0072                     ??_delay:	; 0 bytes @ 0x2
+    91  0072                     	ds	1
+    92                           	global	delay@i
+    93  0073                     delay@i:	; 1 bytes @ 0x3
+    94  0073                     	ds	1
+    95                           	global	??_angle
+    96  0074                     ??_angle:	; 0 bytes @ 0x4
+    97  0074                     	ds	1
+    98                           	global	angle@i
+    99  0075                     angle@i:	; 1 bytes @ 0x5
+   100  0075                     	ds	1
+   101                           	global	??_main
+   102  0076                     ??_main:	; 0 bytes @ 0x6
+   103 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   104 ;;Auto spaces:   Size  Autos    Used
+   105 ;; COMMON          14      6       6
+   106 ;; BANK0           80      0       0
+   107 ;; BANK1           80      0       0
+   108 ;; BANK3           96      0       0
+   109 ;; BANK2           96      0       0
+   110                           
+   111 ;;
+   112 ;; Pointer list with targets:
+   113                           
+   114                           
+   115                           
+   116 ;;
+   117 ;; Critical Paths under _main in COMMON
+   118 ;;
+   119 ;;   _main->_angle
+   120 ;;   _angle->_delay
+   121 ;;
+   122 ;; Critical Paths under _main in BANK0
+   123 ;;
+   124 ;;   None.
+   125 ;;
+   126 ;; Critical Paths under _main in BANK1
+   127 ;;
+   128 ;;   None.
+   129 ;;
+   130 ;; Critical Paths under _main in BANK3
+   131 ;;
+   132 ;;   None.
+   133 ;;
+   134 ;; Critical Paths under _main in BANK2
+   135 ;;
+   136 ;;   None.
+   137                           
+   138 ;;
+   139 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   140 ;;
+   141                           
+   142 ;;
+   143 ;;Call Graph Tables:
+   144 ;;
+   145 ;; ---------------------------------------------------------------------------------
+   146 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; (0) _main                                                 0     0      0     120
+   149 ;;                              _angle
+   150 ;; ---------------------------------------------------------------------------------
+   151 ;; (1) _angle                                                2     2      0     120
+   152 ;;                                              4 COMMON     2     2      0
+   153 ;;                            _display
+   154 ;;                              _delay
+   155 ;; ---------------------------------------------------------------------------------
+   156 ;; (2) _delay                                                4     2      2      60
+   157 ;;                                              0 COMMON     4     2      2
+   158 ;; ---------------------------------------------------------------------------------
+   159 ;; (2) _display                                              1     1      0      15
+   160 ;;                                              0 COMMON     1     1      0
+   161 ;; ---------------------------------------------------------------------------------
+   162 ;; Estimated maximum stack depth 2
+   163 ;; ---------------------------------------------------------------------------------
+   164                           
+   165 ;; Call Graph Graphs:
+   166                           
+   167 ;; _main (ROOT)
+   168 ;;   _angle
+   169 ;;     _display
+   170 ;;     _delay
+   171 ;;
+   172                           
+   173 ;; Address spaces:
+   174                           
+   175 ;;Name               Size   Autos  Total    Cost      Usage
+   176 ;;BITCOMMON            E      0       0       0        0.0%
+   177 ;;EEDATA             100      0       0       0        0.0%
+   178 ;;NULL                 0      0       0       0        0.0%
+   179 ;;CODE                 0      0       0       0        0.0%
+   180 ;;COMMON               E      6       6       1       42.9%
+   181 ;;BITSFR0              0      0       0       1        0.0%
+   182 ;;SFR0                 0      0       0       1        0.0%
+   183 ;;BITSFR1              0      0       0       2        0.0%
+   184 ;;SFR1                 0      0       0       2        0.0%
+   185 ;;STACK                0      0       2       2        0.0%
+   186 ;;ABS                  0      0       0       3        0.0%
+   187 ;;BITBANK0            50      0       0       4        0.0%
+   188 ;;BITSFR3              0      0       0       4        0.0%
+   189 ;;SFR3                 0      0       0       4        0.0%
+   190 ;;BANK0               50      0       0       5        0.0%
+   191 ;;BITSFR2              0      0       0       5        0.0%
+   192 ;;SFR2                 0      0       0       5        0.0%
+   193 ;;BITBANK1            50      0       0       6        0.0%
+   194 ;;BANK1               50      0       0       7        0.0%
+   195 ;;BITBANK3            60      0       0       8        0.0%
+   196 ;;BANK3               60      0       0       9        0.0%
+   197 ;;BITBANK2            60      0       0      10        0.0%
+   198 ;;BANK2               60      0       0      11        0.0%
+   199 ;;DATA                 0      0       0      12        0.0%
+   200                           
+   201                           	global	_main
+   202                           psect	maintext,global,class=CODE,delta=2
+   203                           global __pmaintext
+   204  07AE                     __pmaintext:
+   205                           
+   206 ;; *************** function _main *****************
+   207 ;; Defined at:
+   208 ;;		line 7 in file "C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   209 ;; Parameters:    Size  Location     Type
+   210 ;;		None
+   211 ;; Auto vars:     Size  Location     Type
+   212 ;;		None
+   213 ;; Return value:  Size  Location     Type
+   214 ;;		None               void
+   215 ;; Registers used:
+   216 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   217 ;; Tracked objects:
+   218 ;;		On entry : 17F/0
+   219 ;;		On exit  : 0/0
+   220 ;;		Unchanged: 0/0
+   221 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   222 ;;      Params:         0       0       0       0       0
+   223 ;;      Locals:         0       0       0       0       0
+   224 ;;      Temps:          0       0       0       0       0
+   225 ;;      Totals:         0       0       0       0       0
+   226 ;;Total ram usage:        0 bytes
+   227 ;; Hardware stack levels required when called:    2
+   228 ;; This function calls:
+   229 ;;		_angle
+   230 ;; This function is called by:
+   231 ;;		Startup code after reset
+   232 ;; This function uses a non-reentrant model
+   233 ;;
+   234                           psect	maintext
+   235                           	file	"C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   236                           	line	7
+   237                           	global	__size_of_main
+   238  0052                     	__size_of_main	equ	__end_of_main-_main
+   239                           	
+   240  07AE                     _main:	
+   241                           	opt	stack 6
+   242                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   243                           	line	8
+   244                           	
+   245  07AE                     l1899:	
+   246                           ;picstlcd.c: 8: TRISB=0x00;
+   247  07AE  1683               	bsf	status, 5	;RP0=1, select bank1
+   248  07AF  1303               	bcf	status, 6	;RP1=0, select bank1
+   249  07B0  0186               	clrf	(134)^080h	;volatile
+   250                           	line	9
+   251                           ;picstlcd.c: 9: TRISC=0x00;
+   252  07B1  0187               	clrf	(135)^080h	;volatile
+   253  07B2  2FB3               	goto	l1901
+   254                           	line	10
+   255                           ;picstlcd.c: 10: while(1)
+   256                           	
+   257  07B3                     l691:	
+   258                           	line	12
+   259                           	
+   260  07B3                     l1901:	
+   261                           ;picstlcd.c: 11: {
+   262                           ;picstlcd.c: 12: PORTC=0X01;
+   263  07B3  3001               	movlw	(01h)
+   264  07B4  1283               	bcf	status, 5	;RP0=0, select bank0
+   265  07B5  1303               	bcf	status, 6	;RP1=0, select bank0
+   266  07B6  0087               	movwf	(7)	;volatile
+   267                           	line	13
+   268                           	
+   269  07B7                     l1903:	
+   270                           ;picstlcd.c: 13: angle();
+   271  07B7  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   272                           	line	14
+   273                           	
+   274  07BC                     l1905:	
+   275                           ;picstlcd.c: 14: PORTC=0x03;
+   276  07BC  3003               	movlw	(03h)
+   277  07BD  1283               	bcf	status, 5	;RP0=0, select bank0
+   278  07BE  1303               	bcf	status, 6	;RP1=0, select bank0
+   279  07BF  0087               	movwf	(7)	;volatile
+   280                           	line	15
+   281                           	
+   282  07C0                     l1907:	
+   283                           ;picstlcd.c: 15: angle();
+   284  07C0  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   285                           	line	16
+   286                           	
+   287  07C5                     l1909:	
+   288                           ;picstlcd.c: 16: PORTC=0x02;
+   289  07C5  3002               	movlw	(02h)
+   290  07C6  1283               	bcf	status, 5	;RP0=0, select bank0
+   291  07C7  1303               	bcf	status, 6	;RP1=0, select bank0
+   292  07C8  0087               	movwf	(7)	;volatile
+   293                           	line	17
+   294                           	
+   295  07C9                     l1911:	
+   296                           ;picstlcd.c: 17: angle();
+   297  07C9  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   298                           	line	18
+   299                           	
+   300  07CE                     l1913:	
+   301                           ;picstlcd.c: 18: PORTC=0x06;
+   302  07CE  3006               	movlw	(06h)
+   303  07CF  1283               	bcf	status, 5	;RP0=0, select bank0
+   304  07D0  1303               	bcf	status, 6	;RP1=0, select bank0
+   305  07D1  0087               	movwf	(7)	;volatile
+   306                           	line	19
+   307                           	
+   308  07D2                     l1915:	
+   309                           ;picstlcd.c: 19: angle();
+   310  07D2  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   311                           	line	20
+   312                           	
+   313  07D7                     l1917:	
+   314                           ;picstlcd.c: 20: PORTC=0x04;
+   315  07D7  3004               	movlw	(04h)
+   316  07D8  1283               	bcf	status, 5	;RP0=0, select bank0
+   317  07D9  1303               	bcf	status, 6	;RP1=0, select bank0
+   318  07DA  0087               	movwf	(7)	;volatile
+   319                           	line	21
+   320                           	
+   321  07DB                     l1919:	
+   322                           ;picstlcd.c: 21: angle();
+   323  07DB  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   324                           	line	22
+   325                           	
+   326  07E0                     l1921:	
+   327                           ;picstlcd.c: 22: PORTC=0x0C;
+   328  07E0  300C               	movlw	(0Ch)
+   329  07E1  1283               	bcf	status, 5	;RP0=0, select bank0
+   330  07E2  1303               	bcf	status, 6	;RP1=0, select bank0
+   331  07E3  0087               	movwf	(7)	;volatile
+   332                           	line	23
+   333                           	
+   334  07E4                     l1923:	
+   335                           ;picstlcd.c: 23: angle();
+   336  07E4  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   337                           	line	24
+   338                           	
+   339  07E9                     l1925:	
+   340                           ;picstlcd.c: 24: PORTC=0x08;
+   341  07E9  3008               	movlw	(08h)
+   342  07EA  1283               	bcf	status, 5	;RP0=0, select bank0
+   343  07EB  1303               	bcf	status, 6	;RP1=0, select bank0
+   344  07EC  0087               	movwf	(7)	;volatile
+   345                           	line	25
+   346                           	
+   347  07ED                     l1927:	
+   348                           ;picstlcd.c: 25: angle();
+   349  07ED  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   350                           	line	26
+   351                           	
+   352  07F2                     l1929:	
+   353                           ;picstlcd.c: 26: PORTC=0x09;
+   354  07F2  3009               	movlw	(09h)
+   355  07F3  1283               	bcf	status, 5	;RP0=0, select bank0
+   356  07F4  1303               	bcf	status, 6	;RP1=0, select bank0
+   357  07F5  0087               	movwf	(7)	;volatile
+   358                           	line	27
+   359                           	
+   360  07F6                     l1931:	
+   361                           ;picstlcd.c: 27: angle();
+   362  07F6  120A  118A  2733   	fcall	_angle
+              120A  118A         
+   363  07FB  2FB3               	goto	l1901
+   364                           	line	28
+   365                           	
+   366  07FC                     l692:	
+   367                           	line	10
+   368  07FC  2FB3               	goto	l1901
+   369                           	
+   370  07FD                     l693:	
+   371                           	line	28
+   372                           	
+   373  07FD                     l694:	
+   374                           	global	start
+   375  07FD  120A  118A  2800   	ljmp	start
+   376                           	opt stack 0
+   377                           GLOBAL	__end_of_main
+   378  0800                     	__end_of_main:
+   379 ;; =============== function _main ends ============
+   380                           
+   381                           	signat	_main,88
+   382                           	global	_angle
+   383                           psect	text73,local,class=CODE,delta=2
+   384                           global __ptext73
+   385  0733                     __ptext73:
+   386                           
+   387 ;; *************** function _angle *****************
+   388 ;; Defined at:
+   389 ;;		line 30 in file "C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   390 ;; Parameters:    Size  Location     Type
+   391 ;;		None
+   392 ;; Auto vars:     Size  Location     Type
+   393 ;;  i               1    5[COMMON] unsigned char 
+   394 ;; Return value:  Size  Location     Type
+   395 ;;		None               void
+   396 ;; Registers used:
+   397 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   398 ;; Tracked objects:
+   399 ;;		On entry : 0/0
+   400 ;;		On exit  : 0/0
+   401 ;;		Unchanged: 0/0
+   402 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   403 ;;      Params:         0       0       0       0       0
+   404 ;;      Locals:         1       0       0       0       0
+   405 ;;      Temps:          1       0       0       0       0
+   406 ;;      Totals:         2       0       0       0       0
+   407 ;;Total ram usage:        2 bytes
+   408 ;; Hardware stack levels used:    1
+   409 ;; Hardware stack levels required when called:    1
+   410 ;; This function calls:
+   411 ;;		_display
+   412 ;;		_delay
+   413 ;; This function is called by:
+   414 ;;		_main
+   415 ;; This function uses a non-reentrant model
+   416 ;;
+   417                           psect	text73
+   418                           	file	"C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   419                           	line	30
+   420                           	global	__size_of_angle
+   421  0024                     	__size_of_angle	equ	__end_of_angle-_angle
+   422                           	
+   423  0733                     _angle:	
+   424                           	opt	stack 6
+   425                           ; Regs used in _angle: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   426                           	line	32
+   427                           	
+   428  0733                     l1885:	
+   429                           ;picstlcd.c: 31: unsigned char i;
+   430                           ;picstlcd.c: 32: for(i=0;i<6;i++)
+   431  0733  01F5               	clrf	(angle@i)
+   432                           	
+   433  0734                     l1887:	
+   434  0734  3006               	movlw	(06h)
+   435  0735  0275               	subwf	(angle@i),w
+   436  0736  1C03               	skipc
+   437  0737  2F39               	goto	u2181
+   438  0738  2F3A               	goto	u2180
+   439  0739                     u2181:
+   440  0739  2F3C               	goto	l1891
+   441  073A                     u2180:
+   442  073A  2F56               	goto	l699
+   443                           	
+   444  073B                     l1889:	
+   445  073B  2F56               	goto	l699
+   446                           	line	33
+   447                           	
+   448  073C                     l697:	
+   449                           	line	34
+   450                           	
+   451  073C                     l1891:	
+   452                           ;picstlcd.c: 33: {
+   453                           ;picstlcd.c: 34: display(i);
+   454  073C  0875               	movf	(angle@i),w
+   455  073D  120A  118A  2780   	fcall	_display
+              120A  118A         
+   456                           	line	35
+   457                           	
+   458  0742                     l1893:	
+   459                           ;picstlcd.c: 35: delay(100);
+   460  0742  3064               	movlw	low(064h)
+   461  0743  00F0               	movwf	(?_delay)
+   462  0744  3000               	movlw	high(064h)
+   463  0745  00F1               	movwf	((?_delay))+1
+   464  0746  120A  118A  2757   	fcall	_delay
+              120A  118A         
+   465                           	line	32
+   466                           	
+   467  074B                     l1895:	
+   468  074B  3001               	movlw	(01h)
+   469  074C  00F4               	movwf	(??_angle+0)+0
+   470  074D  0874               	movf	(??_angle+0)+0,w
+   471  074E  07F5               	addwf	(angle@i),f
+   472                           	
+   473  074F                     l1897:	
+   474  074F  3006               	movlw	(06h)
+   475  0750  0275               	subwf	(angle@i),w
+   476  0751  1C03               	skipc
+   477  0752  2F54               	goto	u2191
+   478  0753  2F55               	goto	u2190
+   479  0754                     u2191:
+   480  0754  2F3C               	goto	l1891
+   481  0755                     u2190:
+   482  0755  2F56               	goto	l699
+   483                           	
+   484  0756                     l698:	
+   485                           	line	36
+   486                           	
+   487  0756                     l699:	
+   488  0756  0008               	return
+   489                           	opt stack 0
+   490                           GLOBAL	__end_of_angle
+   491  0757                     	__end_of_angle:
+   492 ;; =============== function _angle ends ============
+   493                           
+   494                           	signat	_angle,88
+   495                           	global	_delay
+   496                           psect	text74,local,class=CODE,delta=2
+   497                           global __ptext74
+   498  0757                     __ptext74:
+   499                           
+   500 ;; *************** function _delay *****************
+   501 ;; Defined at:
+   502 ;;		line 38 in file "C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   503 ;; Parameters:    Size  Location     Type
+   504 ;;  a               2    0[COMMON] unsigned int 
+   505 ;; Auto vars:     Size  Location     Type
+   506 ;;  i               1    3[COMMON] unsigned char 
+   507 ;; Return value:  Size  Location     Type
+   508 ;;		None               void
+   509 ;; Registers used:
+   510 ;;		wreg, status,2, status,0
+   511 ;; Tracked objects:
+   512 ;;		On entry : 0/0
+   513 ;;		On exit  : 0/0
+   514 ;;		Unchanged: 0/0
+   515 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   516 ;;      Params:         2       0       0       0       0
+   517 ;;      Locals:         1       0       0       0       0
+   518 ;;      Temps:          1       0       0       0       0
+   519 ;;      Totals:         4       0       0       0       0
+   520 ;;Total ram usage:        4 bytes
+   521 ;; Hardware stack levels used:    1
+   522 ;; This function calls:
+   523 ;;		Nothing
+   524 ;; This function is called by:
+   525 ;;		_angle
+   526 ;; This function uses a non-reentrant model
+   527 ;;
+   528                           psect	text74
+   529                           	file	"C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   530                           	line	38
+   531                           	global	__size_of_delay
+   532  0029                     	__size_of_delay	equ	__end_of_delay-_delay
+   533                           	
+   534  0757                     _delay:	
+   535                           	opt	stack 6
+   536                           ; Regs used in _delay: [wreg+status,2+status,0]
+   537                           	line	40
+   538                           	
+   539  0757                     l1101:	
+   540                           ;picstlcd.c: 39: unsigned char i;
+   541                           ;picstlcd.c: 40: for(;a>0;a--)
+   542  0757  0871               	movf	((delay@a+1)),w
+   543  0758  0470               	iorwf	((delay@a)),w
+   544  0759  1D03               	skipz
+   545  075A  2F5C               	goto	u11
+   546  075B  2F5D               	goto	u10
+   547  075C                     u11:
+   548  075C  2F5F               	goto	l1105
+   549  075D                     u10:
+   550  075D  2F7F               	goto	l706
+   551                           	
+   552  075E                     l1103:	
+   553  075E  2F7F               	goto	l706
+   554                           	line	41
+   555                           	
+   556  075F                     l702:	
+   557                           	line	42
+   558                           	
+   559  075F                     l1105:	
+   560                           ;picstlcd.c: 41: {
+   561                           ;picstlcd.c: 42: for(i=250;i>0;i--);
+   562  075F  30FA               	movlw	(0FAh)
+   563  0760  00F2               	movwf	(??_delay+0)+0
+   564  0761  0872               	movf	(??_delay+0)+0,w
+   565  0762  00F3               	movwf	(delay@i)
+   566                           	
+   567  0763                     l1107:	
+   568  0763  08F3               	movf	(delay@i),f
+   569  0764  1D03               	skipz
+   570  0765  2F67               	goto	u21
+   571  0766  2F68               	goto	u20
+   572  0767                     u21:
+   573  0767  2F6A               	goto	l1111
+   574  0768                     u20:
+   575  0768  2F72               	goto	l1115
+   576                           	
+   577  0769                     l1109:	
+   578  0769  2F72               	goto	l1115
+   579                           	
+   580  076A                     l704:	
+   581                           	
+   582  076A                     l1111:	
+   583  076A  3001               	movlw	low(01h)
+   584  076B  02F3               	subwf	(delay@i),f
+   585                           	
+   586  076C                     l1113:	
+   587  076C  08F3               	movf	(delay@i),f
+   588  076D  1D03               	skipz
+   589  076E  2F70               	goto	u31
+   590  076F  2F71               	goto	u30
+   591  0770                     u31:
+   592  0770  2F6A               	goto	l1111
+   593  0771                     u30:
+   594  0771  2F72               	goto	l1115
+   595                           	
+   596  0772                     l705:	
+   597                           	line	40
+   598                           	
+   599  0772                     l1115:	
+   600  0772  3001               	movlw	low(01h)
+   601  0773  02F0               	subwf	(delay@a),f
+   602  0774  3000               	movlw	high(01h)
+   603  0775  1C03               	skipc
+   604  0776  03F1               	decf	(delay@a+1),f
+   605  0777  02F1               	subwf	(delay@a+1),f
+   606                           	
+   607  0778                     l1117:	
+   608  0778  0871               	movf	((delay@a+1)),w
+   609  0779  0470               	iorwf	((delay@a)),w
+   610  077A  1D03               	skipz
+   611  077B  2F7D               	goto	u41
+   612  077C  2F7E               	goto	u40
+   613  077D                     u41:
+   614  077D  2F5F               	goto	l1105
+   615  077E                     u40:
+   616  077E  2F7F               	goto	l706
+   617                           	
+   618  077F                     l703:	
+   619                           	line	43
+   620                           	
+   621  077F                     l706:	
+   622  077F  0008               	return
+   623                           	opt stack 0
+   624                           GLOBAL	__end_of_delay
+   625  0780                     	__end_of_delay:
+   626 ;; =============== function _delay ends ============
+   627                           
+   628                           	signat	_delay,4216
+   629                           	global	_display
+   630                           psect	text75,local,class=CODE,delta=2
+   631                           global __ptext75
+   632  0780                     __ptext75:
+   633                           
+   634 ;; *************** function _display *****************
+   635 ;; Defined at:
+   636 ;;		line 45 in file "C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   637 ;; Parameters:    Size  Location     Type
+   638 ;;  num             1    wreg     unsigned char 
+   639 ;; Auto vars:     Size  Location     Type
+   640 ;;  num             1    0[COMMON] unsigned char 
+   641 ;; Return value:  Size  Location     Type
+   642 ;;		None               void
+   643 ;; Registers used:
+   644 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   645 ;; Tracked objects:
+   646 ;;		On entry : 0/0
+   647 ;;		On exit  : 0/0
+   648 ;;		Unchanged: 0/0
+   649 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   650 ;;      Params:         0       0       0       0       0
+   651 ;;      Locals:         1       0       0       0       0
+   652 ;;      Temps:          0       0       0       0       0
+   653 ;;      Totals:         1       0       0       0       0
+   654 ;;Total ram usage:        1 bytes
+   655 ;; Hardware stack levels used:    1
+   656 ;; This function calls:
+   657 ;;		Nothing
+   658 ;; This function is called by:
+   659 ;;		_angle
+   660 ;; This function uses a non-reentrant model
+   661 ;;
+   662                           psect	text75
+   663                           	file	"C:\Users\HP\OneDrive\Documents\PIC\STEPPER LCD\picstlcd.c"
+   664                           	line	45
+   665                           	global	__size_of_display
+   666  002E                     	__size_of_display	equ	__end_of_display-_display
+   667                           	
+   668  0780                     _display:	
+   669                           	opt	stack 6
+   670                           ; Regs used in _display: [wreg-fsr0h+status,2+status,0]
+   671                           ;display@num stored from wreg
+   672  0780  00F0               	movwf	(display@num)
+   673                           	line	46
+   674                           	
+   675  0781                     l1085:	
+   676                           ;picstlcd.c: 46: switch(num){
+   677  0781  2F9C               	goto	l1099
+   678                           	line	47
+   679                           ;picstlcd.c: 47: case 1:PORTB=0x06;
+   680                           	
+   681  0782                     l710:	
+   682                           	
+   683  0782                     l1087:	
+   684  0782  3006               	movlw	(06h)
+   685  0783  1283               	bcf	status, 5	;RP0=0, select bank0
+   686  0784  1303               	bcf	status, 6	;RP1=0, select bank0
+   687  0785  0086               	movwf	(6)	;volatile
+   688                           	line	48
+   689                           ;picstlcd.c: 48: break;
+   690  0786  2FAD               	goto	l716
+   691                           	line	49
+   692                           ;picstlcd.c: 49: case 2:PORTB=0x5B;
+   693                           	
+   694  0787                     l712:	
+   695                           	
+   696  0787                     l1089:	
+   697  0787  305B               	movlw	(05Bh)
+   698  0788  1283               	bcf	status, 5	;RP0=0, select bank0
+   699  0789  1303               	bcf	status, 6	;RP1=0, select bank0
+   700  078A  0086               	movwf	(6)	;volatile
+   701                           	line	50
+   702                           ;picstlcd.c: 50: break;
+   703  078B  2FAD               	goto	l716
+   704                           	line	51
+   705                           ;picstlcd.c: 51: case 3:PORTB=0x4F;
+   706                           	
+   707  078C                     l713:	
+   708                           	
+   709  078C                     l1091:	
+   710  078C  304F               	movlw	(04Fh)
+   711  078D  1283               	bcf	status, 5	;RP0=0, select bank0
+   712  078E  1303               	bcf	status, 6	;RP1=0, select bank0
+   713  078F  0086               	movwf	(6)	;volatile
+   714                           	line	52
+   715                           ;picstlcd.c: 52: break;
+   716  0790  2FAD               	goto	l716
+   717                           	line	53
+   718                           ;picstlcd.c: 53: case 4:PORTB=0x66;
+   719                           	
+   720  0791                     l714:	
+   721                           	
+   722  0791                     l1093:	
+   723  0791  3066               	movlw	(066h)
+   724  0792  1283               	bcf	status, 5	;RP0=0, select bank0
+   725  0793  1303               	bcf	status, 6	;RP1=0, select bank0
+   726  0794  0086               	movwf	(6)	;volatile
+   727                           	line	54
+   728                           ;picstlcd.c: 54: break;
+   729  0795  2FAD               	goto	l716
+   730                           	line	55
+   731                           ;picstlcd.c: 55: case 5:PORTB=0x6D;
+   732                           	
+   733  0796                     l715:	
+   734                           	
+   735  0796                     l1095:	
+   736  0796  306D               	movlw	(06Dh)
+   737  0797  1283               	bcf	status, 5	;RP0=0, select bank0
+   738  0798  1303               	bcf	status, 6	;RP1=0, select bank0
+   739  0799  0086               	movwf	(6)	;volatile
+   740                           	line	56
+   741                           ;picstlcd.c: 56: break;
+   742  079A  2FAD               	goto	l716
+   743                           	line	57
+   744                           	
+   745  079B                     l1097:	
+   746                           ;picstlcd.c: 57: }}
+   747  079B  2FAD               	goto	l716
+   748                           	line	46
+   749                           	
+   750  079C                     l709:	
+   751                           	
+   752  079C                     l1099:	
+   753  079C  0870               	movf	(display@num),w
+   754                           	; Switch size 1, requested type "space"
+   755                           ; Number of cases is 5, Range of values is 1 to 5
+   756                           ; switch strategies available:
+   757                           ; Name         Instructions Cycles
+   758                           ; simple_byte           16     9 (average)
+   759                           ; direct_byte           26    11 (fixed)
+   760                           ; jumptable            263     9 (fixed)
+   761                           ;	Chosen strategy is simple_byte
+   762                           
+   763                           	opt asmopt_off
+   764  079D  3A01               	xorlw	1^0	; case 1
+   765  079E  1903               	skipnz
+   766  079F  2F82               	goto	l1087
+   767  07A0  3A03               	xorlw	2^1	; case 2
+   768  07A1  1903               	skipnz
+   769  07A2  2F87               	goto	l1089
+   770  07A3  3A01               	xorlw	3^2	; case 3
+   771  07A4  1903               	skipnz
+   772  07A5  2F8C               	goto	l1091
+   773  07A6  3A07               	xorlw	4^3	; case 4
+   774  07A7  1903               	skipnz
+   775  07A8  2F91               	goto	l1093
+   776  07A9  3A01               	xorlw	5^4	; case 5
+   777  07AA  1903               	skipnz
+   778  07AB  2F96               	goto	l1095
+   779  07AC  2FAD               	goto	l716
+   780                           	opt asmopt_on
+   781                           
+   782                           	line	57
+   783                           	
+   784  07AD                     l711:	
+   785                           	
+   786  07AD                     l716:	
+   787  07AD  0008               	return
+   788                           	opt stack 0
+   789                           GLOBAL	__end_of_display
+   790  07AE                     	__end_of_display:
+   791 ;; =============== function _display ends ============
+   792                           
+   793                           	signat	_display,4216
+   794                           psect	text76,local,class=CODE,delta=2
+   795                           global __ptext76
+   796  0000                     __ptext76:
+   797                           	global	btemp
+   798  007E                     	btemp set 07Eh
+   799                           
+   800                           	DABS	1,126,2	;btemp
+   801                           	global	wtemp0
+   802  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Tue Oct 08 09:58:54 2024
+
+                  u10 075D                    u11 075C                    u20 0768                    u21 0767  
+                  u30 0771                    u31 0770                    u40 077E                    u41 077D  
+                 l710 0782                   l702 075F                   l711 07AD                   l703 077F  
+                 l712 0787                   l704 076A                   l713 078C                   l705 0772  
+                 l714 0791                   l706 077F                   l715 0796                   l716 07AD  
+                 l709 079C                   l691 07B3                   l692 07FC                   l693 07FD  
+                 l694 07FD                   l697 073C                   l698 0756                   l699 0756  
+                l1101 0757                  l1111 076A                  l1103 075E                  l1113 076C  
+                l1105 075F                  l1115 0772                  l1107 0763                  l1117 0778  
+                l1109 0769                  l1091 078C                  l1093 0791                  l1085 0781  
+                l1095 0796                  l1087 0782                  l1097 079B                  l1089 0787  
+                l1099 079C                  l1901 07B3                  l1911 07C9                  l1903 07B7  
+                l1921 07E0                  l1913 07CE                  l1905 07BC                  l1931 07F6  
+                l1923 07E4                  l1915 07D2                  l1907 07C0                  l1925 07E9  
+                l1917 07D7                  l1909 07C5                  l1927 07ED                  l1919 07DB  
+                l1929 07F2                  l1891 073C                  l1893 0742                  l1885 0733  
+                l1895 074B                  l1887 0734                  l1897 074F                  l1889 073B  
+                l1899 07AE                  u2180 073A                  u2181 0739                  u2190 0755  
+                u2191 0754                  _main 07AE                  btemp 007E                  start 0000  
+               ?_main 0070                 _PORTB 0006                 _PORTC 0007                 _TRISB 0086  
+               _TRISC 0087       __end_of_display 07AE                 _delay 0757                 _angle 0733  
+               status 0003                 wtemp0 007E          __end_of_main 0800                ??_main 0076  
+              ?_delay 0070                ?_angle 0070                delay@a 0070                delay@i 0073  
+              angle@i 0075             ??_display 0070        __pcstackCOMMON 0070         __end_of_delay 0780  
+       __end_of_angle 0757               ??_delay 0072               ??_angle 0074            __pmaintext 07AE  
+             _display 0780  end_of_initialization 072F            display@num 0070   start_initialization 072F  
+            ?_display 0070        __size_of_delay 0029        __size_of_angle 0024      __size_of_display 002E  
+            __ptext72 0000              __ptext73 0733              __ptext74 0757              __ptext75 0780  
+            __ptext76 0000         __size_of_main 0052  
